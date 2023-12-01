@@ -176,7 +176,7 @@ class GlancesIRQ(object):
             with open(self.IRQ_FILE) as irq_proc:
                 time_since_update = getTimeSinceLastUpdate('irq')
                 # Read the header
-                self.__header(irq_proc.readline())
+                self.__header(irq_proc.readline(5_000_000))
                 # Read the rest of the lines (one line per IRQ)
                 for line in irq_proc.readlines():
                     irq_line = self.__humanname(line)
