@@ -37,6 +37,7 @@ from urllib.parse import urlparse
 
 # Correct issue #1025 by monkey path the xmlrpc lib
 from defusedxml.xmlrpc import monkey_patch
+from security import safe_command
 
 monkey_patch()
 
@@ -143,7 +144,7 @@ def nativestr(s, errors='replace'):
 def system_exec(command):
     """Execute a system command and return the result as a str"""
     try:
-        res = subprocess.run(command.split(' '), stdout=subprocess.PIPE).stdout.decode('utf-8')
+        res = safe_command.run(subprocess.run, command.split(' '), stdout=subprocess.PIPE).stdout.decode('utf-8')
     except Exception as e:
         res = 'ERROR: {}'.format(e)
     return res.rstrip()

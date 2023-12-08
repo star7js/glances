@@ -7,6 +7,7 @@ import sys
 from io import open
 
 from setuptools import setup, Command
+from security import safe_command
 
 
 if sys.version_info < (3, 8):
@@ -92,7 +93,7 @@ class tests(Command):
         import subprocess
         import sys
         for t in glob.glob('unitest.py'):
-            ret = subprocess.call([sys.executable, t]) != 0
+            ret = safe_command.call(subprocess.call, [sys.executable, t]) != 0
             if ret != 0:
                 raise SystemExit(ret)
         raise SystemExit(0)
