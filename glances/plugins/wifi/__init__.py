@@ -112,10 +112,10 @@ class PluginModel(GlancesPluginModel):
             # As a backup solution, use the /proc/net/wireless file
             with open(WIRELESS_FILE, 'r') as f:
                 # The first two lines are header
-                f.readline()
-                f.readline()
+                f.readline(5_000_000)
+                f.readline(5_000_000)
                 # Others lines are Wifi stats
-                wifi_stats = f.readline()
+                wifi_stats = f.readline(5_000_000)
                 while wifi_stats != '':
                     # Extract the stats
                     wifi_stats = wifi_stats.split()
@@ -129,7 +129,7 @@ class PluginModel(GlancesPluginModel):
                         }
                     )
                     # Next line
-                    wifi_stats = f.readline()
+                    wifi_stats = f.readline(5_000_000)
 
         elif self.input_method == 'snmp':
             # Update stats using SNMP

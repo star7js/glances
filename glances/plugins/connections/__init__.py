@@ -100,7 +100,7 @@ class PluginModel(GlancesPluginModel):
                 for i in self.conntrack:
                     try:
                         with open(self.conntrack[i], 'r') as f:
-                            stats[i] = float(f.readline().rstrip("\n"))
+                            stats[i] = float(f.readline(5_000_000).rstrip("\n"))
                     except (IOError, FileNotFoundError) as e:
                         logger.warning('Can not get network connections track ({})'.format(e))
                         logger.info('Disable connections track')
