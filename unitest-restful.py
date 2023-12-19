@@ -19,8 +19,7 @@ import unittest
 
 from glances import __version__
 from glances.globals import text_type
-
-import requests
+from security import safe_requests
 
 SERVER_PORT = 61234
 API_VERSION = 3
@@ -42,11 +41,11 @@ class TestGlances(unittest.TestCase):
     def http_get(self, url, deflate=False):
         """Make the request"""
         if deflate:
-            ret = requests.get(url,
+            ret = safe_requests.get(url,
                                stream=True,
                                headers={'Accept-encoding': 'deflate'})
         else:
-            ret = requests.get(url,
+            ret = safe_requests.get(url,
                                headers={'Accept-encoding': 'identity'})
         return ret
 
