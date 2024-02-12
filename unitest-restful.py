@@ -44,10 +44,10 @@ class TestGlances(unittest.TestCase):
         if deflate:
             ret = requests.get(url,
                                stream=True,
-                               headers={'Accept-encoding': 'deflate'})
+                               headers={'Accept-encoding': 'deflate'}, timeout=60)
         else:
             ret = requests.get(url,
-                               headers={'Accept-encoding': 'identity'})
+                               headers={'Accept-encoding': 'identity'}, timeout=60)
         return ret
 
     def test_000_start_server(self):
