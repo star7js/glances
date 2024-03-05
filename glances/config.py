@@ -281,8 +281,9 @@ class Config(object):
         """Return info about the existence of a section."""
         return self.parser.has_section(section)
 
-    def set_default_cwc(self, section, option_header=None, cwc=['50', '70', '90']):
+    def set_default_cwc(self, section, option_header=None, cwc=None):
         """Set default values for careful, warning and critical."""
+        cwc = ['50', '70', '90'] if cwc is None else cwc
         if option_header is None:
             header = ''
         else:

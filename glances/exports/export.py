@@ -63,7 +63,7 @@ class GlancesExport(object):
         """Close the export module."""
         logger.debug("Finalise export interface %s" % self.export_name)
 
-    def load_conf(self, section, mandatories=['host', 'port'], options=None):
+    def load_conf(self, section, mandatories=None, options=None):
         """Load the export <section> configuration in the Glances configuration file.
 
         :param section: name of the export section to load
@@ -72,6 +72,7 @@ class GlancesExport(object):
 
         :returns: Boolean -- True if section is found
         """
+        mandatories = ['host', 'port'] if mandatories is None else mandatories
         options = options or []
 
         if self.config is None:

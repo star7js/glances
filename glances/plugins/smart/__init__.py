@@ -122,8 +122,9 @@ def get_smart_data():
 class PluginModel(GlancesPluginModel):
     """Glances' HDD SMART plugin."""
 
-    def __init__(self, args=None, config=None, stats_init_value=[]):
+    def __init__(self, args=None, config=None, stats_init_value=None):
         """Init the plugin."""
+        stats_init_value = [] if stats_init_value is None else stats_init_value
         # check if user is admin
         if not is_admin():
             disable(args, "smart")

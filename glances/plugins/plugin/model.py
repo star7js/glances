@@ -47,7 +47,7 @@ fields_unit_type = {
 class GlancesPluginModel(object):
     """Main class for Glances plugin model."""
 
-    def __init__(self, args=None, config=None, items_history_list=None, stats_init_value={}, fields_description=None):
+    def __init__(self, args=None, config=None, items_history_list=None, stats_init_value=None, fields_description=None):
         """Init the plugin of plugins model class.
 
         All Glances' plugins model should inherit from this class. Most of the
@@ -69,6 +69,7 @@ class GlancesPluginModel(object):
         :items_history_list: list of items to store in the history
         :stats_init_value: Default value for a stats item
         """
+        stats_init_value = {} if stats_init_value is None else stats_init_value
         # Build the plugin name
         # Internal or external module (former prefixed by 'glances.plugins')
         _mod = self.__class__.__module__.replace('glances.plugins.', '')
@@ -804,11 +805,12 @@ class GlancesPluginModel(object):
         # Return the action list
         return log_tag[0].lower() == 'true'
 
-    def get_conf_value(self, value, header="", plugin_name=None, default=[]):
+    def get_conf_value(self, value, header="", plugin_name=None, default=None):
         """Return the configuration (header_) value for the current plugin.
 
         ...or the one given by the plugin_name var.
         """
+        default = [] if default is None else default
         if plugin_name is None:
             # If not default use the current plugin name
             plugin_name = self.plugin_name
