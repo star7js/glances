@@ -9,8 +9,6 @@
 
 """Manage bars for Glances output."""
 
-from __future__ import division
-
 from math import modf
 
 

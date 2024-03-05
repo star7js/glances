@@ -8,7 +8,6 @@
 #
 
 """File system plugin."""
-from __future__ import unicode_literals
 
 import operator
 

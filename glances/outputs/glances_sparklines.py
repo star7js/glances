@@ -8,9 +8,6 @@
 #
 
 """Manage sparklines for Glances output."""
-
-from __future__ import unicode_literals
-from __future__ import division
 import sys
 from glances.logger import logger
 from glances.globals import nativestr
