@@ -425,7 +425,7 @@ class TestGlances(unittest.TestCase):
             stats.update()
         snapshot_end = tracemalloc.take_snapshot()
         snapshot_diff = snapshot_end.compare_to(snapshot_begin, 'filename')
-        memory_leak = sum([s.size_diff for s in snapshot_diff])
+        memory_leak = sum(s.size_diff for s in snapshot_diff)
         print('INFO: Memory leak: {} bytes'.format(memory_leak))
 
         # snapshot_begin = tracemalloc.take_snapshot()
@@ -433,7 +433,7 @@ class TestGlances(unittest.TestCase):
             stats.update()
         snapshot_end = tracemalloc.take_snapshot()
         snapshot_diff = snapshot_end.compare_to(snapshot_begin, 'filename')
-        memory_leak = sum([s.size_diff for s in snapshot_diff])
+        memory_leak = sum(s.size_diff for s in snapshot_diff)
         print('INFO: Memory leak: {} bytes'.format(memory_leak))
 
         # snapshot_begin = tracemalloc.take_snapshot()
@@ -441,7 +441,7 @@ class TestGlances(unittest.TestCase):
             stats.update()
         snapshot_end = tracemalloc.take_snapshot()
         snapshot_diff = snapshot_end.compare_to(snapshot_begin, 'filename')
-        memory_leak = sum([s.size_diff for s in snapshot_diff])
+        memory_leak = sum(s.size_diff for s in snapshot_diff)
         print('INFO: Memory leak: {} bytes'.format(memory_leak))
         snapshot_top = snapshot_end.compare_to(snapshot_begin, 'traceback')
         print("Memory consumption (top 5):")

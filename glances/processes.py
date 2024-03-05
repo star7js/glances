@@ -284,7 +284,7 @@ class GlancesProcesses(object):
 
             if LINUX:
                 try:
-                    ret['memory_swap'] = sum([v.swap for v in selected_process.memory_maps()])
+                    ret['memory_swap'] = sum(v.swap for v in selected_process.memory_maps())
                 except (psutil.NoSuchProcess, KeyError):
                     # (KeyError catch for issue #1551)
                     pass

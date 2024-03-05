@@ -439,7 +439,7 @@ class GlancesPluginModel(object):
         if isinstance(self.get_raw(), list) and self.get_raw() is not None and self.get_key() is not None:
             # Stats are stored in a list of dict (ex: NETWORK, FS...)
             for i in self.get_raw():
-                if any([i[f] for f in self.hide_zero_fields]):
+                if any(i[f] for f in self.hide_zero_fields):
                     for f in self.hide_zero_fields:
                         self.views[i[self.get_key()]][f]['_zero'] = self.views[i[self.get_key()]][f]['hidden']
                 for f in self.hide_zero_fields:
@@ -451,7 +451,7 @@ class GlancesPluginModel(object):
             #
             # Stats are stored in a dict (ex: CPU, LOAD...)
             for key in listkeys(self.get_raw()):
-                if any([self.get_raw()[f] for f in self.hide_zero_fields]):
+                if any(self.get_raw()[f] for f in self.hide_zero_fields):
                     for f in self.hide_zero_fields:
                         self.views[f]['_zero'] = self.views[f]['hidden']
                 for f in self.hide_zero_fields:
