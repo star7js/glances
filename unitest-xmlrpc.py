@@ -19,6 +19,7 @@ import unittest
 
 from glances import __version__
 from glances.globals import ServerProxy
+from security import safe_command
 
 SERVER_PORT = 61234
 URL = "http://localhost:%s" % SERVER_PORT
@@ -51,7 +52,7 @@ class TestGlances(unittest.TestCase):
         cmdline += " -m glances -B localhost -s -p %s" % SERVER_PORT
         print("Run the Glances Server on port %s" % SERVER_PORT)
         args = shlex.split(cmdline)
-        pid = subprocess.Popen(args)
+        pid = safe_command.run(subprocess.Popen, args)
         print("Please wait...")
         time.sleep(1)
 
