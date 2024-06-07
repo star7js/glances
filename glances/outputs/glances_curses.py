@@ -883,8 +883,7 @@ class _GlancesCurses(object):
 
         # Number of plugin but quicklook
         stats_number = sum(
-            [int(stat_display[p]['msgdict'] != []) for p in self._top if not getattr(self.args, 'disable_' + p)]
-        )
+            int(stat_display[p]['msgdict'] != []) for p in self._top if not getattr(self.args, 'disable_' + p))
 
         if not self.args.disable_quicklook:
             # Quick look is in the place !

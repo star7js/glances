@@ -156,7 +156,7 @@ def global_message():
     # Compute the weight for each item in the tree
     current_thresholds = glances_thresholds.get()
     for i in tree:
-        i['weight'] = sum([current_thresholds[t].value() for t in i['thresholds'] if t in current_thresholds])
+        i['weight'] = sum(current_thresholds[t].value() for t in i['thresholds'] if t in current_thresholds)
     themax = max(tree, key=lambda d: d['weight'])
     if themax['weight'] >= themax['thresholds_min']:
         # Check if the weight is > to the minimal threshold value

@@ -183,7 +183,7 @@ class PluginModel(GlancesPluginModel):
         # Disk list (sorted by name)
         for i in self.sorted_stats():
             # Hide stats if never be different from 0 (issue #1787)
-            if all([self.get_views(item=i[self.get_key()], key=f, option='hidden') for f in self.hide_zero_fields]):
+            if all(self.get_views(item=i[self.get_key()], key=f, option='hidden') for f in self.hide_zero_fields):
                 continue
             # Is there an alias for the disk name ?
             disk_name = self.has_alias(i['disk_name']) if self.has_alias(i['disk_name']) else i['disk_name']
