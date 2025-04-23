@@ -20,6 +20,7 @@ from glances import __version__
 from glances.globals import nativestr, urlopen, HTTPError, URLError, safe_makedirs
 from glances.config import user_cache_dir
 from glances.logger import logger
+import fickling
 
 try:
     from packaging.version import Version
@@ -123,7 +124,7 @@ class Outdated(object):
         cached_data = {}
         try:
             with open(self.cache_file, 'rb') as f:
-                cached_data = pickle.load(f)
+                cached_data = fickling.load(f)
         except Exception as e:
             logger.debug("Cannot read version from cache file: {} ({})".format(self.cache_file, e))
         else:
