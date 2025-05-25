@@ -44,10 +44,9 @@ one_line=false
 status_url=http://localhost/nginx_status
 """
 
-import requests
-
 from glances.logger import logger
 from glances.amps.amp import GlancesAmp
+from security import safe_requests
 
 
 class Amp(GlancesAmp):
@@ -67,7 +66,7 @@ class Amp(GlancesAmp):
         """Update the AMP"""
         # Get the Nginx status
         logger.debug('{}: Update stats using status URL {}'.format(self.NAME, self.get('status_url')))
-        res = requests.get(self.get('status_url'), timeout=60)
+        res = safe_requests.get(self.get('status_url'), timeout=60)
         if res.ok:
             # u'Active connections: 1 \nserver accepts handled requests\n 1 1 1 \nReading: 0 Writing: 1 Waiting: 0 \n'
             self.set_result(res.text.rstrip())
