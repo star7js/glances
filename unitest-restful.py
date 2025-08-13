@@ -21,6 +21,7 @@ from glances import __version__
 from glances.globals import text_type
 
 import requests
+from security import safe_command
 
 SERVER_PORT = 61234
 API_VERSION = 3
@@ -62,7 +63,7 @@ class TestGlances(unittest.TestCase):
         cmdline += " -m glances -B localhost -w -p %s" % SERVER_PORT
         print("Run the Glances Web Server on port %s" % SERVER_PORT)
         args = shlex.split(cmdline)
-        pid = subprocess.Popen(args)
+        pid = safe_command.run(subprocess.Popen, args)
         print("Please wait 5 seconds...")
         time.sleep(5)
 
